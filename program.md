@@ -1,6 +1,6 @@
-# autoresearch
+# autoresearch-metal
 
-This is an experiment to have the LLM do its own research.
+This is an experiment to have the LLM do its own research on Apple Silicon (MPS).
 
 ## Setup
 
@@ -20,7 +20,7 @@ Once you get confirmation, kick off the experimentation.
 
 ## Experimentation
 
-Each experiment runs on a single GPU. The training script runs for a **fixed time budget of 5 minutes** (wall clock training time, excluding startup/compilation). You launch it simply as: `uv run train.py`.
+Each experiment runs on a single GPU (Apple Silicon MPS, CUDA, or CPU). The training script runs for a **fixed time budget of 5 minutes** (wall clock training time, excluding startup/compilation). You launch it simply as: `uv run train.py`.
 
 **What you CAN do:**
 - Modify `train.py` — this is the only file you edit. Everything is fair game: model architecture, optimizer, hyperparameters, training loop, batch size, model size, etc.
@@ -44,15 +44,15 @@ Once the script finishes it prints a summary like this:
 
 ```
 ---
-val_bpb:          0.997900
+val_bpb:          1.234500
 training_seconds: 300.1
 total_seconds:    325.9
-peak_vram_mb:     45060.2
-mfu_percent:      39.80
-total_tokens_M:   499.6
-num_steps:        953
-num_params_M:     50.3
-depth:            8
+peak_vram_mb:     0.0
+mfu_percent:      2.50
+total_tokens_M:   8.5
+num_steps:        130
+num_params_M:     4.2
+depth:            4
 ```
 
 Note that the script is configured to always stop after 5 minutes, so depending on the computing platform of this computer the numbers might look different. You can extract the key metric from the log file:
